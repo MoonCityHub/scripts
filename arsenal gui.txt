@@ -1,0 +1,52 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Arsenal gui", "Synapse")
+local Skins = Window:NewTab("Skins")
+local Visuals = Window:NewTab("Visuals")
+local Section = Skins:NewSection("DevSkins")
+local InGame = Visuals:NewSection("InGame")
+Section:NewButton("Monky In Locker", "gives monky in locker", function()
+local Core = getsenv(game.Players.LocalPlayer.PlayerGui.Menew.LocalScript);
+
+local Loadout;
+for i,v in pairs(getupvalues(Core.ViewItems)) do
+    if typeof(v) == "table" then
+        if v.Skins then
+            Loadout = v;
+        end
+    end
+end
+
+table.insert(Loadout.Skins, "Monky");
+end)
+
+Section:NewButton("KillBrick In Locker", "gives KillBrick in locker", function()
+local Core = getsenv(game.Players.LocalPlayer.PlayerGui.Menew.LocalScript);
+
+local Loadout;
+for i,v in pairs(getupvalues(Core.ViewItems)) do
+    if typeof(v) == "table" then
+        if v.Skins then
+            Loadout = v;
+        end
+    end
+end
+
+table.insert(Loadout.Skins, "KillBrick");
+end)
+
+InGame:NewButton("Rainbow gun only once toggleable", "gives rainbow gun in game", function()
+local c = 1
+function zigzag(X)
+ return math.acos(math.cos(X * math.pi)) / math.pi
+end
+game:GetService("RunService").RenderStepped:Connect(function()
+ if game.Workspace.Camera:FindFirstChild('Arms') then
+  for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do
+   if v.ClassName == 'MeshPart' then 
+    v.Color = Color3.fromHSV(zigzag(c),1,1)
+    c = c + .0001
+   end
+  end
+ end
+end)
+end)
