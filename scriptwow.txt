@@ -1,0 +1,82 @@
+--mainguis
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+--mainguis
+--uicorners
+local UICorner = Instance.new("UICorner")
+local UIGridLayout = Instance.new("UIGridLayout")
+local UICorner_2 = Instance.new("UICorner")
+local UICorner_3 = Instance.new("UICorner")
+--uicorners
+ScreenGui.Enabled = false
+Frame.Visible = false
+TextLabel.Visible = false
+function CreateUI(name)
+	ScreenGui.Enabled = true
+	Frame.Visible = true
+	TextLabel.Visible = true
+	
+	ScreenGui.Parent = game:GetService("CoreGui")
+	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Frame.Parent = ScreenGui
+	Frame.BackgroundColor3 = Color3.fromRGB(61, 61, 61)
+	Frame.Position = UDim2.new(0.244205266, 0, 0.224683523, 0)
+	Frame.Size = UDim2.new(0.510761619, 0, 0.549050689, 0)
+	Frame.Selectable = true
+	Frame.Draggable = true
+	game:GetService("UserInputService").InputBegan:Connect(function(input)
+		if game.Players.LocalPlayer:GetAttribute("isTyping") == true then
+			
+		else
+			if input == Enum.KeyCode.F2 then
+				if Frame.Visible == true then
+					Frame.Visible = false
+				else
+					Frame.Visible = true
+				end
+			end
+		end
+	end)
+
+	UICorner.CornerRadius = UDim.new(0, 9)
+	UICorner.Parent = Frame
+
+	UIGridLayout.Parent = Frame
+	UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	UIGridLayout.CellSize = UDim2.new(0.324000001, 0, 0.144999996, 0)
+
+	TextLabel.Parent = ScreenGui
+	TextLabel.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel.Position = UDim2.new(0.243377477, 0, 0.716772139, 0)
+	TextLabel.Size = UDim2.new(0.50996846, 0, 0.0559010804, 0)
+	TextLabel.Font = Enum.Font.GothamBold
+	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.TextScaled = true
+	TextLabel.TextSize = 14.000
+	TextLabel.TextWrapped = true
+
+	UICorner_2.CornerRadius = UDim.new(0, 9)
+	UICorner_2.Parent = TextLabel
+end
+function createBtn(name, text, call)
+	local TextButton = Instance.new("TextButton")
+	TextButton.Parent = ScreenGui
+	TextButton.Name = name
+	TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	TextButton.Position = UDim2.new(0.114238434, 0, 0.279843777, 0)
+	TextButton.Size = UDim2.new(0.751301289, 0, 0.329635233, 0)
+	TextButton.Visible = true
+	TextButton.Font = Enum.Font.GothamBold
+	TextButton.Text = tostring(text)
+	TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextButton.TextScaled = true
+	TextButton.TextSize = 14.000
+	TextButton.TextWrapped = true
+	UICorner_3.CornerRadius = UDim.new(0, 9)
+	UICorner_3.Parent = TextButton
+	TextButton.MouseButton1Click:Connect(function()
+		pcall(call())
+	end)
+end
