@@ -62,7 +62,7 @@ function CreateUI(name)
 end
 function createBtn(name, text, call)
 	local TextButton = Instance.new("TextButton")
-	TextButton.Parent = ScreenGui
+	TextButton.Parent = Frame
 	TextButton.Name = name
 	TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	TextButton.Position = UDim2.new(0.114238434, 0, 0.279843777, 0)
